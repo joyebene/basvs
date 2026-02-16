@@ -215,7 +215,7 @@ export default function DashboardPage() {
                   rows={3}
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8B0000] transition"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8B0000] transition text-gray-900"
                   placeholder="Brief description of the election..."
                 />
               </div>
@@ -223,7 +223,7 @@ export default function DashboardPage() {
               <div className="flex flex-col mb-4">
                 <label className="block text-sm font-medium text-gray-700 mb-1">Election Type</label>
                 <div className="flex items-center gap-4">
-                  <label className="flex items-center gap-2 cursor-pointer">
+                  <label className="flex items-center gap-2 cursor-pointer text-gray-900">
                     <input
                       type="radio"
                       name="isPublic"
@@ -234,7 +234,7 @@ export default function DashboardPage() {
                     />
                     Public
                   </label>
-                  <label className="flex items-center gap-2 cursor-pointer">
+                  <label className="flex items-center gap-2 cursor-pointer text-gray-800">
                     <input
                       type="radio"
                       name="isPublic"
@@ -261,7 +261,7 @@ export default function DashboardPage() {
               </div>
 
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1  sm:grid-cols-2 gap-4">
                 <div>
                   <Input
                     label='Start Date'

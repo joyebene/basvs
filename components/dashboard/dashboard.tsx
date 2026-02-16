@@ -261,7 +261,7 @@ export default function DashboardPage() {
               </div>
 
 
-              <div className="grid grid-cols-1  sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1  sm:grid-cols-2 gap-4 w-fit">
                 <div>
                   <Input
                     label='Start Date'
@@ -280,6 +280,7 @@ export default function DashboardPage() {
                     required
                     value={formData.endDate}
                     onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
+                    className='text-gray-900 appearance-none'
                   />
                 </div>
               </div>

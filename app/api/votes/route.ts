@@ -26,9 +26,7 @@ export async function GET() {
     });
 
     console.log(elections);
-    
 
-    if (elections.length) return NextResponse.json({ message: "No ongoing election", status: 404 })
 
     return NextResponse.json(elections);
 }

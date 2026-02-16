@@ -42,6 +42,14 @@ export default function DashboardPage() {
     });
   };
 
+  const toUTC = (dateString: string) => {
+    const localDate = new Date(dateString);
+    return new Date(
+      localDate.getTime() - localDate.getTimezoneOffset() * 60000
+    ).toISOString();
+  };
+
+
   const addCandidate = () => {
     setFormData(prev => ({ ...prev, candidates: [...prev.candidates, ''] }));
   };
@@ -59,8 +67,8 @@ export default function DashboardPage() {
     newCandidates[index] = value;
     setFormData(prev => ({ ...prev, candidates: newCandidates }));
   };
- 
-    const refreshAccessToken = async () => {
+
+  const refreshAccessToken = async () => {
     const res = await fetch("/api/auth/refresh", {
       method: "POST",
       credentials: "include",
@@ -89,28 +97,48 @@ export default function DashboardPage() {
     try {
       let token = localStorage.getItem("token");
 
-      let res = await fetch("/api/votes/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(formData),
-      });
+      const payload = {
+        ...formData,
+        startDate: toUTC(formData.startDate),
+        endDate: toUTC(formData.endDate),
+      };
 
-       // If unauthorized, try refreshing token
-        if (res.status === 401) {
-          try {
-            token = await refreshAccessToken();
-            localStorage.setItem("token", token!);
-            res = await fetch("/api/votes/create", {
-              headers: { Authorization: `Bearer ${token}` },
-            });
-          } catch {
-            console.error("Failed to refresh token");
-            return;
-          }
+
+      let res = await fetch("/api/votes/create",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(payload),
+        });
+
+      // If unauthorized, try refreshing token
+      if (res.status === 401) {
+        try {
+          token = await refreshAccessToken();
+          localStorage.setItem("token", token!);
+          const payload = {
+            ...formData,
+            startDate: toUTC(formData.startDate),
+            endDate: toUTC(formData.endDate),
+          };
+
+          res = await fetch("/api/votes/create",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(payload),
+          });
+        } catch {
+          console.error("Failed to refresh token");
+          return;
         }
+      }
 
       if (!res.ok) {
         const error = await res.json();

@@ -25,8 +25,11 @@ export async function GET() {
         endDate: { $gte: now },
     });
 
-    if (!elections) return NextResponse.json({ message: "No ongoing election", status: 404 })
+    console.log(elections);
+    
 
-    return Response.json(elections);
+    if (elections.length) return NextResponse.json({ message: "No ongoing election", status: 404 })
+
+    return NextResponse.json(elections);
 }
 

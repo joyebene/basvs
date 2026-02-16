@@ -6,7 +6,9 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   await connectDB();
-  const { matricNumber, password } = await req.json();
+  const body = await req.json();
+  const matricNumber = body.matricNumber.toUpperCase().trim();
+  const password = body.password;
 
   const user = await User.findOne({ matricNumber });
   if (!user) {
@@ -19,9 +21,9 @@ export async function POST(req: Request) {
   // }
 
   // const isMatch = await bcrypt.compare(password, user.password);
-if (password !== user.password) {
-  return NextResponse.json({ message: "Invalid credentials" }, { status: 401 });
-}
+  if (password !== user.password) {
+    return NextResponse.json({ message: "Invalid credentials" }, { status: 401 });
+  }
 
 
   const accessToken = signAccessToken({ id: user._id.toString() });

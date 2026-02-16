@@ -21,6 +21,6 @@ export async function GET() {
     );
 
     const elections = await Election.find({ status: "ongoing" }).sort({ createdAt: -1 });
-
+ 
 	return NextResponse.json(elections);
 }

@@ -45,6 +45,7 @@ export default function VotePage() {
         const res = await fetch("/api/votes");
         if (!res.ok) throw new Error("Failed to fetch elections");
         const data = await res.json();
+
         setElections(data);
       } catch (err) {
         console.error(err);
@@ -172,10 +173,9 @@ export default function VotePage() {
     setError("");
   };
 
-  const now = new Date();
   const activeElections = elections.filter(
     (election) =>
-      new Date(election.startDate) <= now && new Date(election.endDate) >= now
+      election.status === "ongoing"
   );
 
   if (loading) {

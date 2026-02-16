@@ -20,14 +20,7 @@ export async function GET() {
         { status: "ongoing" }
     );
 
-    const elections = await Election.find({
-        startDate: { $lte: now },
-        endDate: { $gte: now },
-    });
+    const elections = await Election.find({ status: "ongoing" }).sort({ createdAt: -1 });
 
-    console.log(elections);
-
-
-    return NextResponse.json(elections);
+	return NextResponse.json(elections);
 }
-

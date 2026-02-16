@@ -28,4 +28,10 @@ const ElectionSchema = new Schema(
   { timestamps: true }
 );
 
+ElectionSchema.index(
+  { title: 1, startDate: 1, endDate: 1 },
+  { unique: true }
+);
+
+
 export default models.Election || mongoose.model("Election", ElectionSchema);

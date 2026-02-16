@@ -177,7 +177,7 @@ export default function VotePage() {
   if (loading) {
     return (
       <DashboardLayout>
-        <div className="text-center py-20">Loading elections...</div>
+        <div className="text-center py-20 text-gray-900">Loading elections...</div>
       </DashboardLayout>
     );
   }

@@ -11,16 +11,21 @@ export default function LoginPage() {
   const [matricNumber, setMatricNumber] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
+      setIsLoading(true);
+
       const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ matricNumber, password }),
       });
+      
 
       const data = await res.json();
 
@@ -37,6 +42,7 @@ export default function LoginPage() {
     } catch (error) {
       console.error(error);
       alert("Something went wrong");
+      setIsLoading(false);
     }
   };
 
@@ -80,7 +86,7 @@ export default function LoginPage() {
               Default password for all students: 87654321
             </p>
           </div>
-          <Button type="submit">Login</Button>
+          <Button type="submit" isLoading={isLoading}>Login</Button>
         </form>
       </div>
     </div>

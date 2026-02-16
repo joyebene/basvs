@@ -34,6 +34,8 @@ export default function VotePage() {
   const [isVoting, setIsVoting] = useState(false);
   const [error, setError] = useState("");
   const [showCompletedModal, setShowCompletedModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
 
   const router = useRouter();
 
@@ -119,6 +121,7 @@ export default function VotePage() {
     }
 
     try {
+      setIsLoading(true);
       let token = localStorage.getItem("token");
       let res = await fetch("/api/votes/submit", {
         method: "POST",
@@ -158,6 +161,7 @@ export default function VotePage() {
     } catch (err) {
       console.error(err);
       setError("Something went wrong while submitting vote.");
+      setIsLoading(false);
     }
   };
 
@@ -314,7 +318,7 @@ export default function VotePage() {
                 </div>
               </div>
 
-              <Button onClick={handleVote} disabled={!selectedCandidate}>
+              <Button onClick={handleVote} disabled={!selectedCandidate} isLoading={isLoading}>
                 Submit Vote
               </Button>
             </div>

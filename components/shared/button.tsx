@@ -4,11 +4,14 @@ import React from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "danger" | "secondary";
+  isLoading?: boolean;
 }
 
 export default function Button({
   children,
   variant = "primary",
+  isLoading = false,
+  disabled,
   className = "",
   ...props
 }: ButtonProps) {
@@ -24,9 +27,13 @@ export default function Button({
   return (
     <button
       {...props}
+      disabled={disabled || isLoading}
       className={`${baseStyles} ${variants[variant]} ${className}`}
     >
-      {children}
+      {isLoading && (
+        <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+      )}
+      {isLoading ? "Please wait..." : children}
     </button>
   );
 }

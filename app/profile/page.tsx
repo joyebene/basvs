@@ -26,6 +26,8 @@ export default function ProfilePage() {
   });
   const [isEditing, setIsEditing] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
 
   const refreshAccessToken = async () => {
     const res = await fetch("/api/auth/refresh", {
@@ -44,6 +46,7 @@ export default function ProfilePage() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
+        
         let token = localStorage.getItem("token");
         let res = await fetch("/api/profile", {
           headers: { Authorization: `Bearer ${token}` },
@@ -87,6 +90,7 @@ export default function ProfilePage() {
 
   const handleUpdate = async () => {
     try {
+      setIsLoading(true); 
       let token = localStorage.getItem("token");
       let res = await fetch("/api/profile", {
         method: "PUT",
@@ -117,6 +121,7 @@ export default function ProfilePage() {
       alert("Profile updated successfully!");
     } catch (err) {
       console.error(err);
+      setIsLoading(false);
     }
   };
 
@@ -244,6 +249,7 @@ export default function ProfilePage() {
                   <Button
                     onClick={handleUpdate}
                     className="flex items-center justify-center gap-2"
+                    isLoading={isLoading}
                   >
                     <CheckCircleIcon className="w-5 h-5" />
                     Save Changes

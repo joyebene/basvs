@@ -16,6 +16,8 @@ import Input from '../shared/input';
 export default function DashboardPage() {
   const router = useRouter();
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
 
   // Form State
   const [formData, setFormData] = useState({
@@ -95,6 +97,7 @@ export default function DashboardPage() {
     }
 
     try {
+      setIsLoading(true);
       let token = localStorage.getItem("token");
 
       const payload = {
@@ -153,6 +156,7 @@ export default function DashboardPage() {
     } catch (err) {
       console.error(err);
       alert("Something went wrong while creating the election");
+      setIsLoading(false);
     }
   };
 
@@ -211,7 +215,7 @@ export default function DashboardPage() {
             <div className="relative z-10 flex flex-col items-center">
               <UserIcon className="w-10 h-10 sm:w-12 sm:h-12 text-purple-500 mb-4 group-hover:scale-110 transition-transform duration-300" />
               <h2 className="text-lg sm:text-xl font-bold text-gray-800 mb-2">Profile</h2>
-              <p className="text-sm sm:text-gray-600">View or update your profile information.</p>
+              <p className="text-sm sm:text-base text-gray-600">View or update your profile information.</p>
             </div>
           </div>
         </main>
@@ -345,7 +349,7 @@ export default function DashboardPage() {
 
               <div className="flex gap-3 pt-4">
                 <Button variant="secondary" onClick={closeModal}>Cancel</Button>
-                <Button type="submit">Create Election</Button>
+                <Button type="submit" isLoading={isLoading}>Create Election</Button>
               </div>
             </form>
           </div>

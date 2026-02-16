@@ -69,7 +69,7 @@ export default function ResultsPage() {
     return (
       <DashboardLayout>
         <div className="max-w-2xl mx-auto">
-          <h1 className="text-2xl md:text-3xl font-bold mb-2 sm:mb-4 md:mb-6">Election Results</h1>
+          <h1 className="text-2xl md:text-3xl font-bold mb-2 sm:mb-4 md:mb-6 text-black">Election Results</h1>
           <p className="text-gray-600">No completed elections yet. Check back after voting periods end!</p>
         </div>
       </DashboardLayout>

@@ -83,9 +83,9 @@ export default function ResultsPage() {
         <div className='mb-8'>
           <div className="flex items-center gap-3 mb-2 sm:mb-4 md:mb-6">
             <ChartBarIcon className="w-8 h-8 text-green-500" />
-            <h1 className="text-2xl md:text-3xl font-bold">Election Results</h1>
+            <h1 className="text-2xl md:text-3xl font-bold text-black">Election Results</h1>
           </div>
-          <p className="text-sm md:textbase">View detailed results from completed elections.</p>
+          <p className="text-sm md:textbase text-gray-600">View detailed results from completed elections.</p>
         </div>
 
 

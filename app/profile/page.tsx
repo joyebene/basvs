@@ -144,7 +144,7 @@ export default function ProfilePage() {
 
         <div className="flex items-center gap-4 mb-8">
           <UserIcon className="w-8 h-8 text-[#8B0000]" />
-          <h1 className="text-2xl md:text-3xl font-bold">Your Profile</h1>
+          <h1 className="text-2xl md:text-3xl font-bold text-black">Your Profile</h1>
         </div>
 
         {/* Profile Card */}

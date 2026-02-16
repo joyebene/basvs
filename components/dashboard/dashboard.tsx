@@ -133,8 +133,8 @@ export default function DashboardPage() {
     <DashboardLayout>
       <div className="max-w-6xl mx-auto">
         <div className='mb-8'>
-          <h2 className="text-2xl md:text-3xl font-bold mb-2 sm:mb-4 md:mb-6">Dashboard Overview</h2>
-          <p className="text-sm md:textbase">Manage elections, cast votes, and more.</p>
+          <h2 className="text-2xl md:text-3xl font-bold mb-2 sm:mb-4 md:mb-6 text-black">Dashboard Overview</h2>
+          <p className="text-sm md:textbase text-gray-600">Manage elections, cast votes, and more.</p>
         </div>
 
         <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">

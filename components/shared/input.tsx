@@ -26,7 +26,7 @@ export default function Input({
         {...props}
         className={`
           w-full px-4 py-2 border border-gray-300 rounded-md
-          focus:outline-none focus:ring-2 focus:ring-[#753a3a]
+          focus:outline-none text-gray-900 focus:ring-2 focus:ring-[#753a3a]
           transition shadow-xs
           ${className}
         `}

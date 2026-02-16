@@ -186,7 +186,7 @@ export default function VotePage() {
     return (
       <DashboardLayout>
         <div className="max-w-2xl mx-auto text-center py-20">
-          <h1 className="text-3xl font-bold mb-6">Cast Your Vote</h1>
+          <h1 className="text-3xl font-bold mb-6 text-black">Cast Your Vote</h1>
           <p className="text-gray-600">
             No ongoing elections at the moment. Check back later!
           </p>
@@ -198,7 +198,7 @@ export default function VotePage() {
   return (
     <DashboardLayout>
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-2xl md:text-3xl font-bold mb-6">Ongoing Elections</h1>
+        <h1 className="text-2xl md:text-3xl font-bold mb-6 text-black">Ongoing Elections</h1>
         <p className="text-sm md:text-base text-gray-600 mb-8">
           Select an election to participate in.
         </p>

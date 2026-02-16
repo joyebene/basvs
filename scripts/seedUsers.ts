@@ -9,9 +9,19 @@ const seedUsers = async () => {
   dotenv.config();
   await connectDB();
 
+  const generateMatricNumber = () => {
+  const uni = "SAZUG";                // University code
+  const level = "UG";                  // Level (UG/PG)
+  const faculty = "SCI";               // Faculty
+  const dept = "CSC";                  // Department
+  const randomNumber = faker.number.int({ min: 1000, max: 9999 }); // 4-digit number
+
+  return `${uni}/${level}/${faculty}/${dept}/${randomNumber}`;
+};
+
   const users = Array.from({ length: 20 }).map(() => ({ 
     name: faker.person.fullName(),
-    matricNumber: faker.string.numeric(8),
+    matricNumber: generateMatricNumber(),
     email: faker.internet.email(),
     password: "87654321",
     role: "student",
